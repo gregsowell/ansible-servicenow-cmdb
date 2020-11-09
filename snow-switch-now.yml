@@ -1,10 +1,7 @@
 plugin: servicenow.servicenow.now
-# instance: "{{ snow_instance }}"
-# username: "{{ snow_username }}"
-# password: "{{ snow_password }}"
 table: cmdb_ci_ip_switch
 fields: [ip_address,name,manufacturer,host_name]
 keyed_groups:
-  - key: manufacturer | lower
+  - key: sn_manufacturer | lower
     prefix: ''
     separator: ''
