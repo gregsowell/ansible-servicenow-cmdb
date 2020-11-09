@@ -1,0 +1,7 @@
+plugin: servicenow.servicenow.now
+table: cmdb_ci_ip_switch
+fields: [ip_address,name,manufacturer]
+keyed_groups:
+  - key: manufacturer | lower
+	prefix: ''
+	separator: ''
