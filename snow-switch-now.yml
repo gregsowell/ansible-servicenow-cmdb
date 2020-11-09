@@ -1,4 +1,3 @@
----
 plugin: servicenow.servicenow.now
 instance: "{{ snow_instance }}"
 username: "{{ snow_username }}"
