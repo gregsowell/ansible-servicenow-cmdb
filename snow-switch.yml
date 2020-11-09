@@ -1,3 +1,4 @@
+---
 plugin: servicenow.servicenow.now
 table: cmdb_ci_ip_switch
 fields: [ip_address,name,manufacturer]
