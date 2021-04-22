@@ -1,0 +1,29 @@
+inventory_migration:
+- name: sw1
+  desc: 1st lab switch
+  serial_num: 111
+  asset: P1000611
+  ip_addr: 192.168.51.51
+  model: 3550
+  mfg: Cisco
+- name: sw2
+  desc: 2nd lab switch
+  serial_num: 222
+  asset: P1000612
+  ip_addr: 192.168.51.52
+  model: 3550
+  mfg: Cisco
+- name: sw3
+  desc: 3rd lab switch
+  serial_num: 333
+  asset: P1000613
+  ip_addr: 192.168.51.53
+  model: 3550
+  mfg: Cisco
+- name: sw4
+  desc: 4th lab switch
+  serial_num: 444
+  asset: P1000614
+  ip_addr: 192.168.51.54
+  model: 3550
+  mfg: Cisco

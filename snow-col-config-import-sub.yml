@@ -1,0 +1,44 @@
+---
+  - name: "If {{ inv_entries.name }} already exists, update it's configuration"
+    when: "inv_entries.name == item.name"
+    servicenow.itsm.configuration_item:
+      sys_id: "{{ item.sys_id }}"
+      name: "{{ inv_entries.name }}"
+      short_description: "{{ inv_entries.desc }}"
+      serial_number: "{{ inv_entries.serial_num }}"
+      asset_tag: "{{ inv_entries.asset }}"
+#      class: cmdb_ci_server
+#      assigned_to: some.user
+#      sys_class_name: cmdb_ci_ip_switch
+#      environment: production
+#      category: Hardware
+      sys_class_name: "{{ cmdb_table }}"
+      environment: "{{ env }}"
+      category: "{{ cat }}"
+      ip_address: "{{ inv_entries.ip_addr }}"
+      other:
+        model_number: "{{ inv_entries.model }}"
+        manufacturer: "{{ inv_entries.mfg }}"
+    register: update_hw
+    loop: "{{ all_config_items.records}}"
+
+
+#  - name: debug add_hw
+#    debug:
+#      var: update_hw
+
+  - name: "{{ inv_entries.name }} didn't already exist, so create it"
+    when: "update_hw.changed == false"
+    servicenow.itsm.configuration_item:
+      name: "{{ inv_entries.name }}"
+      short_description: "{{ inv_entries.desc }}"
+      serial_number: "{{ inv_entries.serial_num }}"
+      asset_tag: "{{ inv_entries.asset }}"
+      sys_class_name: "{{ cmdb_table }}"
+      environment: "{{ env }}"
+      category: "{{ cat }}"
+      ip_address: "{{ inv_entries.ip_addr }}"
+      other:
+        model_number: "{{ inv_entries.model }}"
+        manufacturer: "{{ inv_entries.mfg }}"
+    register: create_hw

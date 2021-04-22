@@ -1,0 +1,37 @@
+---
+- name: Importing devices into SNOW CMDB keyd off of the name field
+  hosts: localhost  
+  gather_facts: false
+  vars:
+    # CMDB table name
+    cmdb_table: cmdb_ci_ip_switch 
+    # which environment it will be placed in
+    env: production 
+    # category for device
+    cat: Hardware 
+
+  tasks:
+  - name: Include the file that will be imported into SNOW
+    include_vars:
+      file: snow-col-config-template.yml
+
+  - name: Read all of the existing CMDB entries and save them to a variable
+    servicenow.itsm.configuration_item_info:
+      sys_class_name: cmdb_ci_ip_switch
+    register: all_config_items
+
+#  - name: debug all config items
+#    debug:
+#      var: all_config_items
+
+  - name: Loop to import devices.  This calls a sub task for processing
+    include_tasks: snow-col-config-import-sub.yml
+    register: update_hw
+    loop: "{{ inventory_migration }}"
+    loop_control:
+      loop_var: inv_entries
+
+
+#  - name: debug add_hw
+#    debug:
+#      var: update_hw
