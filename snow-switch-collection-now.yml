@@ -1,0 +1,9 @@
+plugin: servicenow.itsm.now
+table: cmdb_ci_ip_switch
+columns:
+  - name
+  - ip_address
+  - host_name
+  - manufacturer
+group_by:
+  manufacturer:
