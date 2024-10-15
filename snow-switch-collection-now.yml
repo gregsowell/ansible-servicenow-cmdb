@@ -5,7 +5,7 @@ columns:
   - ip_address
   - host_name
   - manufacturer
-# group_by:
-#   manufacturer:
+group_by:
+  manufacturer:
 keyed_groups:
   - key: manufacturer
